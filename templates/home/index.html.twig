@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'Accueil{% endblock %}
+
+{% block body %}
+
+ {% for message in app.flashes('success') %}
+        <div class="alert alert-succes" role="alert">{{ message }}</div>
+    {% endfor %}
+ <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left">
+            <img src="assets/img/car.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right">
+            <h3>Bienvenu dans la plateforme de vente de voiture d'occasion</h3>
+            <p class="fst-italic">
+              Depuis ce panel vous allez pouvoir publier des annoncespour vendre vos voitures d'occasions, notamment en ajoutant de nouveaux véhicules, les supprimer etc..
+            </p>
+            <ul>
+              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+              <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+              <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+            </ul>
+            <p>
+              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+              culpa qui officia deserunt mollit anim id est laborum
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section --><section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title">
+          <span>Annonces</span>
+          <h2>Parcourir nos annonces</h2>
+          <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto quaerat sit incidunt consequatur. Ullam blanditiis et atque omnis labore odit ab porro qui, libero natus ipsa consectetur earum sit tempora eum placeat voluptate eveniet. Odio ullam fugit nemo tempore laboriosam dignissimos at, quia suscipit deserunt asperiores debitis, itaque doloremque sapiente in quae exercitationem dolores aut pariatur nam sunt illo? Est molestias ratione consequuntur, consequatur, amet, harum laborum iste laudantium cupiditate ex quidem suscipit quam ullam placeat voluptatem soluta ad! Voluptatibus incidunt blanditiis eum? Culpa deleniti repellendus quos earum illo provident fugiat accusamus, ipsam aperiam dolores, numquam commodi sint nobis, voluptatem libero iusto similique optio. Ab, error autem. Pariatur quibusdam ut eius. Optio perferendis error laboriosam ratione aliquid. Cupiditate ex sunt aliquid autem, libero qui sint, accusamus voluptates, fugit rem quidem deserunt molestiae veritatis incidunt recusandae saepe adipisci quo. Ducimus delectus accusantium autem fuga commodi ipsa ipsam aperiam amet quis ea ad ipsum, quod perferendis voluptate! Quos voluptatum molestiae eligendi facere quae? Corrupti cumque mollitia rerum unde, tenetur natus exercitationem repellat inventore delectus vero dolore fugit officiis quasi! Reprehenderit delectus aliquam voluptate voluptatem fugiat repudiandae fuga quidem nam placeat. Reiciendis pariatur atque nam magnam amet, ut itaque voluptates sapiente possimus officiis.</p>
+        </div>
+       <div class="card-body text-center">
+							<a href="{{ path('app_annonce') }}" class="card-link btn btn-primary">Parcourir nos annonces</a>
+						</div>
+
+{% endblock %}

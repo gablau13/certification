@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class= "text-center"  >
+<h3>Veuillez remplir ce formulaire pour publier une annonce</h3>
+</div>
+	{{ form_start(form) }}
+	<div class="container w-50 h-50 bg-light text-black mt-25">
+		<div class="form-group">
+			{{ form_widget(form) }}
+	
+	    </div>
+		<button type="submit" class="btn btn-primary">Publiez</button>
+    </div>
+	{{ form_end(form) }}
+
+{% endblock %}

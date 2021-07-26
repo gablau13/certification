@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Annonce{% endblock %}
+
+{% block body %}
+<div class="container">
+		<h2 class="text-center">Venez découvrir toutes nos annonces</h2><br>
+        <div class="row">
+			{% for annonce in annonces %}
+
+				<div class="col-md-4">
+					<div class="card mb-3">
+						<h5 class="card-header text-center"> {{annonce.titre}}</h5>
+        
+                    </div>
+                    <img src="{{ asset('uploads/cover_images/' ~ annonce.coverImage  ) }}" alt="image" style="height:300; width:100%;">
+                    <div class="card-body">
+
+
+							<h5>{{annonce.marque.nom}}</h5>
+
+							<p class="card-text">{{annonce.description }}</p>
+                            <p class="card-text"> Visible à {{annonce.Adresse }}</p>
+						</div>
+                        <div class="card-body">
+							<a href="{{ path('annonces_show', {'slug':annonce.slug}) }}" class="card-link btn btn-primary">Détails...</a>
+						</div>
+                </div>
+                {% endfor %}
+        </div>
+
+
+
+</div>
+{% endblock %}
