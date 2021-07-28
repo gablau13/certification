@@ -2,16 +2,13 @@
 
 {% block title %}Annonce
 {% endblock %}
-
 {% block body %}
-
 	<div class="container">
 		<h2 class="text-center">Bienvenu sur la page Annonce</h2><br>
-
 		<div class="card mb-3">
 			<h5 class="card-header text-center">{{annonces.titre}}</h5>
 		</div>
-		<img src="{{ asset('uploads/cover_images/' ~ annonces.coverImage ) }}" alt="image" style="height:400px; width:100%;">
+		<img src="{{ asset('uploads/cover_images/' ~ annonces.coverImage ) }}" alt="image" style="height:500px; width:100%;">
 		<div class="card-body text-center">
 
 			<h5>
@@ -32,63 +29,56 @@
 				Visible à
 				{{annonces.Adresse }}</p>
 		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<h3 style="margin-top: 2em;">Commentaires</h3>
+	</div>
+	<div class="container">
+		<h3>Commentaires</h3>
+		<div class="row">
+			<div class=" col-md-6">
+			
+				{% for commentaire in annonces.commentaires %}
+					<div class="alert alert-info">
+						<p>
+							<small>{{commentaire.auteur}}
+								a écrit</small>
+						</p>
+						<p>
+							<strong>{{commentaire.contenu}}</strong>
+						</p>
+						<p>
+							<small>
+								Publié par
+								{{commentaire.auteur}}
 
-					{% for commentaire in annonces.commentaires %}
-						<div class="alert alert-info">
-							<p>
-								<small>{{commentaire.auteur}}
-									a écrit</small>
-							</p>
-							<p>
-								<strong>{{commentaire.contenu}}</strong>
-							</p>
-							<p>
-								<small>
-									Publié par
-									{{commentaire.auteur}}
+								{{annonces.createdAt |ago(locale='fr')}}</small>
+						</p>
+					</div>
+				{% endfor %}
+				<h3>Ajouter un commentaire</h3>
+				{{ form_start(commentaireForm) }}
 
-									{{annonces.createdAt |ago(locale='fr')}}</small>
-                            </p>
-							
-                        {% endfor %}    
-					    </div>
-                    <h3>Ajouter un commentaire</h3>
-                            {{ form_start(commentaireForm) }}
+				<div class="form-group">
+					{{ form_widget(commentaireForm) }}
 
-                            <div class="form-group">
-                                {{ form_widget(commentaireForm) }}
-
-                            </div> <br>
-                            <button type="submit" class="btn btn-primary">Publiez</button>
-                         {{ form_end(commentaireForm) }}
-                        
-                       
-
+				</div>
 				<br>
+				<button type="submit" class="btn btn-primary">Publiez</button>
+				{{ form_end(commentaireForm) }}<br>
+			</div><br><br>
+
+			<div class="col-md-6">
+				{% if app.request.attributes.get('_route') == 'annonces_show' %}
+					{% for image in annonces.images %}
+
+						<div class="card-body">
+							<img src="{{ asset('/upload/' ~ image.nomUrl) }}" alt="Image" width="400">
+						</div>
+
+					{% endfor %}
+				{% endif %}
+
 
 			</div>
-            <div class="col-md-6">
-                        {% for image in annonces.images %}
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="{{image.imageUrl}}" alt="" class="card-img w-100%">
-                        </div>
-
-                    </div>
-
-                </div>
-                 {% endfor %}
-                  
-                        
-                <a class='btn btn-primary' href="{{path('annonces_show_image', {'id':annonce.id}))}}">Ajouter des photos</a>
-           
-
-
 		</div>
-	</div>
-{% endblock %}
+
+		
+	{% endblock %}

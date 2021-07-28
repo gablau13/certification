@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="text-center">
-	<h3>Ajouter des images</h3>
+<div class= "text-center"  >
+<h3>Ajoutez des images</h3>
 </div>
+	{{ form_start(imageForm) }}
+	<div class="container w-50 h-50 bg-light text-black mt-25">
+		<div class="form-group">
+			{{ form_widget(imageForm) }}
+	
+	    </div> <br>
+		<button type="submit" class="btn btn-primary">Publiez</button>
+    </div>
+	{{ form_end(imageForm) }}
 
-{{ form_start(ImagesForm) }}
-
-<div class="form-group">
-	{{ form_widget(ImagesForm) }}
-
-</div>
-<br>
-<button type="submit" class="btn btn-primary">Publiez</button>
-{{ form_end(ImageForm) }}
+{% endblock %}

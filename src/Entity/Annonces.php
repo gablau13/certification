@@ -74,7 +74,7 @@ class Annonces
     private $Categorie;
 
     /**
-     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="Annonces")
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="Annonces", cascade={"persist"})
      */
     private $images;
 

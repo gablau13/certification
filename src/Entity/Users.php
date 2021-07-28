@@ -36,6 +36,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+    
 
     /**
      * @ORM\Column(type="string", length=255)

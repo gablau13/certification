@@ -70,6 +70,22 @@ class AnnonceController extends AbstractController
                 // on enregistre le nom de l'image dans la base de données
                 $annonce->setCoverImage($imageName);
             }
+            //Récupération des images transmises
+            $images = $form->get('images')->getData();
+            //on boucle sur les images
+            foreach($images as $image){
+                // on génére un nouveau nom de fichier
+                $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                // on copie le fichier dans le dossier upload
+                $image->move($this->getParameter('image_directory'),
+                $fichier
+                );
+                // On stocke l'image dans la base données
+                $img = new Images();
+                $img->setNomUrl($fichier);
+                $annonce->addImage($img);
+
+            }
             
             $this->manager->persist($annonce);
             $this->manager->flush();
@@ -126,7 +142,7 @@ class AnnonceController extends AbstractController
     {
         $annonce = $this->getDoctrine()->getRepository(Annonces::class)->find($annonce);
         
-        $commentaire = new Commentaires;
+        $commentaire = new Commentaires();
         // On génére le formulaire
         $commentaireForm = $this->CreateForm(CommentaireType::class, $commentaire);
         $commentaireForm->handleRequest($request);
@@ -149,32 +165,35 @@ class AnnonceController extends AbstractController
         ]);
 }
 
-#[Route('/annonce/show/image/{id}', name: 'annonces_show_image')]
+#[Route('/annonce/image/{slug}', name: 'annonces_show_image')]
     
-    public function createImage(Images $image, Request $request, EntityManagerInterface $manager): Response
+    public function createImage(Annonces $annonce, Request $request, EntityManagerInterface $manager): Response
     {
-        $image = $this->getDoctrine()->getRepository(Images::class)->find($image);
+        $image = $this->getDoctrine()->getRepository(Images::class)->find($annonce);
         
-        $image = new Images;
+        $imageForm = new Images();
         // On génére le formulaire
-        $imageForm = $this->CreateForm(ImagesType::class, $image);
-        $imageForm->handleRequest($request);
-
+        $imageform = $this->CreateForm(ImagesType::class, $image);
+        $imageform->handleRequest($request);
         //Traitement du formulaire
-        if($imageForm->isSubmitted() && $imageForm->isValid())
+        if($imageform->isSubmitted() && $imageform->isValid())
         {
-           
-           
+            // Récupération de l'image depuis le formulaire
+            $image = $imageform->get('Images')->getData();
+            $image->setAnnonces($annonce);
             $manager->persist($image);
             $manager->flush();
 
+            return $this->redirectToRoute('annonces_show_image', ['slug'=>$annonce->getSlug()]);
+        }
+        return $this->render('annonce/createimages.html.twig', [
+            'annonces' => $annonce,
+            
+            'imageForm' => $imageform->createView()
+        ]);
            
+           
+
         }
 
-        return $this->render('annonce/createimages.html.twig', [
-           
-            
-            'ImageForm' => $imageForm->createView()
-        ]);
-}
 }

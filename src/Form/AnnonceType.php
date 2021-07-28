@@ -30,7 +30,7 @@ class AnnonceType extends AbstractType
             ])
             
             ->add('coverImage', FileType::class, [
-                "label" => 'ajouter une photos',
+                "label" => 'Image de couverture',
                 'mapped' => false,
                 'required' => false,
                 'attr' => [
@@ -74,14 +74,19 @@ class AnnonceType extends AbstractType
                 ]
             ])
             
-            
+            ->add('images', FileType::class, [
+                'label'=> false,
+                'multiple'=> true,
+                'mapped'=> false,
+                'required'=> false
+            ])
             ->add('Disponibilite',CheckboxType::class, [
                 "label" => 'Disponibilité',
                 
                 
-            ]);
+            ])
            
-            
+          ;  
     }
 
     public function configureOptions(OptionsResolver $resolver)

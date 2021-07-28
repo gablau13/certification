@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Commentaires;
 use Symfony\Component\Form\AbstractType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -28,7 +29,7 @@ class CommentaireType extends AbstractType
                 'placeholder' => "exemple@exemple.com", 'class' => 'form-control'
             ]
         ])
-        ->add('contenu', TextareaType::class, [
+        ->add('contenu', CKEditorType::class, [
             "label" => 'Commentaire',
             'attr' => [
                 'placeholder' => "votre commentaire", 'class' => 'form-control'

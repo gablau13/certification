@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Entity;
-
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use App\Repository\ImagesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ImagesRepository::class)
+ *  @Vich\Uploadable
  */
 class Images
 {
@@ -15,6 +17,7 @@ class Images
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
+
     private $id;
 
     /**
