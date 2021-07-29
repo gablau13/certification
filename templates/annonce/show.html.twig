@@ -70,7 +70,7 @@
 					{% for image in annonces.images %}
 
 						<div class="card-body">
-							<img src="{{ asset('/upload/' ~ image.nomUrl) }}" alt="Image" width="400">
+							<a href=""><img src="{{ asset('/upload/' ~ image.nomUrl) }}" alt="Image" width="400"></a>
 						</div>
 
 					{% endfor %}
@@ -80,5 +80,6 @@
 			</div>
 		</div>
 
-		
+		<a href="{{path('annonces_edit', {'slug' : annonces.slug})}}">Modifier Annonce</a>
+		<a href={{path("annonces_delete", {'slug' : annonces.slug} )}} class="btn btn-danger">Supprimer Annonce</a>
 	{% endblock %}

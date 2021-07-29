@@ -98,50 +98,17 @@ class AnnonceController extends AbstractController
         ]);
     }
     
-    #[Route('/annonces/marque', name: 'annonces_marque')]
-    public function createMarque(Request $request): Response
-    {
-        $marque = new Marque();
-        $form = $this->createForm(MarqueType::class, $marque);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) { 
+    
 
-            $this->manager->persist($marque);
-            $this->manager->flush();
-
-            return $this->redirectToRoute('annonces_categorie');
-   
-       }
-       return $this->render('annonce/Marque.html.twig', [
-        'form' => $form->createView(),
-    ]);
-    }
-
-    #[Route('/annonces/categorie', name: 'annonces_categorie')]
-    public function createCategorie(Request $request): Response
-    {
-        $categorie = new Categorie();
-        $form = $this->createForm(CategorieType::class, $categorie);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) { 
-           
-            $this->manager->persist($categorie);
-            $this->manager->flush();
-
-            return $this->redirectToRoute('annonces_create');
-   
-       }
-       return $this->render('annonce/Marque.html.twig', [
-        'form' => $form->createView(),
-    ]);
-    }
-
+    
     #[Route('/annonces/{slug}', name: 'annonces_show')]
     
     public function Show(Annonces $annonce, Request $request, EntityManagerInterface $manager): Response
     {
+
+    
+
         $annonce = $this->getDoctrine()->getRepository(Annonces::class)->find($annonce);
-        
         $commentaire = new Commentaires();
         // On génére le formulaire
         $commentaireForm = $this->CreateForm(CommentaireType::class, $commentaire);
@@ -191,9 +158,68 @@ class AnnonceController extends AbstractController
             
             'imageForm' => $imageform->createView()
         ]);
-           
-           
-
         }
+
+        #[Route('/annonces/edit/{slug}', name: 'annonces_edit')]
+        public function edit(Request $request, Annonces $annonce): Response
+        {
+            $annonce = new Annonces();
+            $form = $this->createForm(AnnonceType::class, $annonce);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                
+                // Récupération de l'image depuis le formulaire
+                $coverImage = $form->get('coverImage')->getData();
+                if ($coverImage) {
+                    //création d'un nom pour l'image avec l'extension récupérée
+                    $imageName = md5(uniqid()) . '.' . $coverImage->guessExtension();
+    
+                    //on déplace l'image dans le répertoire cover_image_directory avec le nom qu'on a crée
+                    $coverImage->move(
+                        $this->getParameter('cover_image_directory'),
+                        $imageName
+                    );
+    
+                    // on enregistre le nom de l'image dans la base de données
+                    $annonce->setCoverImage($imageName);
+                }
+                //Récupération des images transmises
+                $images = $form->get('images')->getData();
+                //on boucle sur les images
+                foreach($images as $image){
+                    // on génére un nouveau nom de fichier
+                    $fichier = md5(uniqid()) . '.' . $image->guessExtension();
+                    // on copie le fichier dans le dossier upload
+                    $image->move($this->getParameter('image_directory'),
+                    $fichier
+                    );
+                    // On stocke l'image dans la base données
+                    $img = new Images();
+                    $img->setNomUrl($fichier);
+                    $annonce->addImage($img);
+    
+                }
+                
+                $this->manager->persist($annonce);
+                $this->manager->flush();
+                $this->addFlash('success', 'Annonce modifier avec succès!');
+                return $this->redirectToRoute('app_annonce');
+            }
+    
+            return $this->render('annonce/edit.html.twig', [
+                'form' => $form->createView(),
+            ]);     
+}
+#[Route('/annonces/delete/{slug}', name: 'annonces_delete')]
+public function delete(Annonces $anounce): Response
+{
+
+    $this->manager->remove($anounce);
+    $this->manager->flush();
+    $this->addFlash('success', 'Annonce supprimer avec succès!');
+    return $this->redirectToRoute('app_annonce');
+}
+
+
 
 }

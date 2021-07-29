@@ -11,6 +11,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=AnnoncesRepository::class)
+ * @ORM\Table(name="annonces", indexes={@ORM\Index(columns={"marque_id", "Categorie_id"}, flags={"fulltex"})})
+ * 
  */
 class Annonces
 {
@@ -74,12 +76,12 @@ class Annonces
     private $Categorie;
 
     /**
-     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="Annonces", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Images::class, mappedBy="Annonces", cascade={"persist"}, cascade={"persist", "remove"})
      */
     private $images;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="Annonces")
+     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="Annonces", cascade={"persist", "remove"})
      */
     private $commentaires;
 

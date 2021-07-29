@@ -7,6 +7,8 @@
  {% for message in app.flashes('success') %}
         <div class="alert alert-succes" role="alert">{{ message }}</div>
     {% endfor %}
+
+    
  <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container">
@@ -43,8 +45,63 @@
           <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto quaerat sit incidunt consequatur. Ullam blanditiis et atque omnis labore odit ab porro qui, libero natus ipsa consectetur earum sit tempora eum placeat voluptate eveniet. Odio ullam fugit nemo tempore laboriosam dignissimos at, quia suscipit deserunt asperiores debitis, itaque doloremque sapiente in quae exercitationem dolores aut pariatur nam sunt illo? Est molestias ratione consequuntur, consequatur, amet, harum laborum iste laudantium cupiditate ex quidem suscipit quam ullam placeat voluptatem soluta ad! Voluptatibus incidunt blanditiis eum? Culpa deleniti repellendus quos earum illo provident fugiat accusamus, ipsam aperiam dolores, numquam commodi sint nobis, voluptatem libero iusto similique optio. Ab, error autem. Pariatur quibusdam ut eius. Optio perferendis error laboriosam ratione aliquid. Cupiditate ex sunt aliquid autem, libero qui sint, accusamus voluptates, fugit rem quidem deserunt molestiae veritatis incidunt recusandae saepe adipisci quo. Ducimus delectus accusantium autem fuga commodi ipsa ipsam aperiam amet quis ea ad ipsum, quod perferendis voluptate! Quos voluptatum molestiae eligendi facere quae? Corrupti cumque mollitia rerum unde, tenetur natus exercitationem repellat inventore delectus vero dolore fugit officiis quasi! Reprehenderit delectus aliquam voluptate voluptatem fugiat repudiandae fuga quidem nam placeat. Reiciendis pariatur atque nam magnam amet, ut itaque voluptates sapiente possimus officiis.</p>
         </div>
-       <div class="card-body text-center">
+      
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    
+    <!-- ======= Portfolio Details Section ======= -->
+    <section id="portfolio-details" class="portfolio-details">
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-8">
+            <div class="portfolio-details-slider swiper-container">
+              <div class="swiper-wrapper align-items-center">
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/4x4.png" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/chevrolet.png" alt="">
+                </div>
+
+                <div class="swiper-slide">
+                  <img src="assets/img/portfolio/120mvB.jpg" alt="">
+                </div>
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="portfolio-info">
+              <h3>Information sur le projet</h3>
+              <ul>
+                <li><strong>Categorie</strong>: tout type de voiture</li>
+                <li><strong>Structure</strong>: GVS</li>
+                <li><strong>Date de création</strong>: 01 Aout, 2021</li>
+                <li><strong>Contact URL</strong>: <a href="{{ path('app_home') }}">WWW.GVSSenegal.org</a></li>
+              </ul>
+            </div>
+            <div class="portfolio-description">
+              <h2>Présentation du projet</h2>
+              <p>
+                Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. 
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Details Section -->
+ <div class="card-body text-center">
 							<a href="{{ path('app_annonce') }}" class="card-link btn btn-primary">Parcourir nos annonces</a>
 						</div>
+  </main><!-- End #main -->
 
 {% endblock %}
