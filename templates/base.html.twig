@@ -12,10 +12,11 @@
 		<!-- Axentix CSS minified version -->
 
 		{% block stylesheets %}{% endblock %}
+		
 		<link href="{{asset('assets/img/favicon.png')}}" rel="icon">
 		<link
 		href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
-
+       
 		<!-- Google Fonts -->
 		<link
 		href="{{asset('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet')}}">
@@ -31,6 +32,7 @@
 
 		<!-- Template Main CSS File -->
 		<link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+		 <link href="{{asset('assets/css/Fontawesome.min.css')}}"rel="stylesheet"> 
 
 	</head>
 <header id="header" class="d-flex align-items-center">
@@ -54,8 +56,12 @@
                     <li>
                         <a  href="{{ path('app_login') }}">Connexion</a>
                     </li> 
-                     
-                    
+                     <li>
+                        <a  href="{{ path('app_annonce') }}">Nos annonces</a>
+                    </li> 
+                    <li>
+                        <a  href="{{ path('admin_index') }}">Admin</a>
+                    </li> 
                     
                     
                             

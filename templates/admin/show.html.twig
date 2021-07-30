@@ -12,28 +12,28 @@
 	<div class="container">
 		<h2 class="text-center">Bienvenu sur la page Annonce</h2><br>
 		<div class="card mb-3">
-			<h5 class="card-header text-center">{{annonces.titre}}</h5>
+			<h5 class="card-header text-center">{{annonce.titre}}</h5>
 		</div>
-		<img src="{{ asset('uploads/cover_images/' ~ annonces.coverImage ) }}" alt="image" style="height:500px; width:100%;">
+		<img src="{{ asset('uploads/cover_images/' ~ annonce.coverImage ) }}" alt="image" style="height:500px; width:100%;">
 		<div class="card-body text-center">
 
 			<h5>
 				<strong>
 					Marque:</strong>
-				{{annonces.marque.nom}}</h5>
+				{{annonce.marque.nom}}</h5>
 
 			<p class="card-text">
 				<strong>
 					Description:</strong>
-				<br>{{annonces.description }}</p>
+				<br>{{annonce.description }}</p>
 			<p class="card-text text-center">
 				<strong>
-					{{annonces.Prix | number_format(0, ',', ' ')}}
+					{{annonce.Prix | number_format(0, ',', ' ')}}
 					FCFA</strong>
 			</p>
 			<p class="card-text">
 				Visible à
-				{{annonces.Adresse }}</p>
+				{{annonce.Adresse }}</p>
 		</div>
 	</div>
 	<div class="container">
@@ -41,7 +41,7 @@
 		<div class="row">
 			<div class=" col-md-6">
 			
-				{% for commentaire in annonces.commentaires %}
+				{% for commentaire in annonce.commentaires %}
 					<div class="alert alert-info">
 						<p>
 							<small>{{commentaire.auteur}}
@@ -55,25 +55,18 @@
 								Publié par
 								{{commentaire.auteur}}
 
-								{{annonces.createdAt |ago(locale='fr')}}</small>
+								{{annonce.createdAt |ago(locale='fr')}}</small>
 						</p>
+                <div class="btn btn-danger">Supprimer</div>
 					</div>
 				{% endfor %}
-				<h3>Ajouter un commentaire</h3>
-				{{ form_start(commentaireForm) }}
+				
 
-				<div class="form-group">
-					{{ form_widget(commentaireForm) }}
-
-				</div>
-				<br>
-				<button type="submit" class="btn btn-primary">Publiez</button>
-				{{ form_end(commentaireForm) }}<br>
-			</div><br><br>
+				
 
 			<div class="col-md-6">
 				{% if app.request.attributes.get('_route') == 'annonces_show' %}
-					{% for image in annonces.images %}
+					{% for image in annonce.images %}
 
 						<div class="card-body">
 							<a href=""><img src="{{ asset('/upload/' ~ image.nomUrl) }}" alt="Image" width="400"></a>
@@ -86,6 +79,5 @@
 			</div>
 		</div>
 
-		<a href="{{path('annonces_edit', {'slug' : annonces.slug})}}">Modifier Annonce</a>
-		<a href={{path("annonces_delete", {'slug' : annonces.slug} )}} class="btn btn-danger">Supprimer Annonce</a>
+		
 	{% endblock %}

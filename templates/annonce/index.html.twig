@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block body %}
+{% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
 	<div class="container">
 		<h2 class="text-center">Venez découvrir toutes nos annonces</h2><br>
 		<div class="row">
@@ -32,8 +37,9 @@
 					</div>
 				</div>
 			{% endfor %}
-		</div>
+		</div> <br><br>
 	</div>
-
+<div class="text-center mb-3">
 	<a class="btn btn-primary" href="{{path('annonces_create')}}">Ajoutez une annonce</a>
+	</div>
 {% endblock %}
