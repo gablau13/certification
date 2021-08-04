@@ -57,7 +57,7 @@
 
 								{{annonce.createdAt |ago(locale='fr')}}</small>
 						</p>
-                <div class="btn btn-danger">Supprimer</div>
+                <a href="{{ path('annonces_delete_commentaire', {'slug':annonce.slug}) }}">Supprimer</a>
 					</div>
 				{% endfor %}
 				

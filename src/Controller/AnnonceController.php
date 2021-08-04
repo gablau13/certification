@@ -46,7 +46,45 @@ class AnnonceController extends AbstractController
             'annonces' => $annonce,
         ]);
     }
+    #[Route('/annonces/categorie', name: 'app_annonce_categorie')]
+    public function createCategorie(Request $request, EntityManagerInterface $manager ): Response
+    {
+        $categorie= new Categorie();
+        $form = $this->createForm(CategorieType::class, $categorie);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+       
+        
+       
+        $this->manager = $manager;
+        $manager->persist($categorie);
+            $manager->flush();
+    }
+    return $this->render('annonce/Categorie.html.twig', [
+        'categorie' => $categorie,
+        'form' => $form -> createView()
+    ]);
+    }
 
+    #[Route('/annonces/marque', name: 'app_annonce_marque')]
+    public function createMarque(Request $request, EntityManagerInterface $manager ): Response
+    {
+        $marque= new Marque();
+        $form = $this->createForm(MarqueType::class, $marque);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+       
+        
+       
+        $this->manager = $manager;
+        $manager->persist($marque);
+            $manager->flush();
+    }
+    return $this->render('annonce/Categorie.html.twig', [
+        'categorie' => $marque,
+        'form' => $form -> createView()
+    ]);
+    }
     #[Route('/annonces/create', name: 'annonces_create')]
     public function create(Request $request): Response
     {
@@ -211,10 +249,10 @@ class AnnonceController extends AbstractController
             ]);     
 }
 #[Route('/annonces/delete/{slug}', name: 'annonces_delete')]
-public function delete(Annonces $anounce): Response
+public function delete(Annonces $annonce): Response
 {
 
-    $this->manager->remove($anounce);
+    $this->manager->remove($annonce);
     $this->manager->flush();
     $this->addFlash('success', 'Annonce supprimer avec succès!');
     return $this->redirectToRoute('app_annonce');

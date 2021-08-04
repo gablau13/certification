@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Annonces;
+use App\Entity\Commentaires;
 use App\Form\AnnoncesType;
 use App\Repository\AnnoncesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,6 +21,9 @@ class AdminController extends AbstractController
             'annonces' => $annoncesRepository->findAll(),
         ]);
     }
+    #[Route('/admin/{slug}', name: 'annonces_delete_commentaire')]
+   
+   
 
     #[Route('/new', name: 'admin_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
@@ -79,4 +83,6 @@ class AdminController extends AbstractController
 
         return $this->redirectToRoute('admin_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
 }

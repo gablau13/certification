@@ -8,15 +8,15 @@
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-		           and uncomment the following Encore helpers to start using Symfony UX #}
+				           and uncomment the following Encore helpers to start using Symfony UX #}
 		<!-- Axentix CSS minified version -->
 
 		{% block stylesheets %}{% endblock %}
-		
+
 		<link href="{{asset('assets/img/favicon.png')}}" rel="icon">
 		<link
 		href="{{asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
-       
+
 		<!-- Google Fonts -->
 		<link
 		href="{{asset('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet')}}">
@@ -32,92 +32,64 @@
 
 		<!-- Template Main CSS File -->
 		<link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
-		 <link href="{{asset('assets/css/Fontawesome.min.css')}}"rel="stylesheet"> 
+		<link href="{{asset('assets/css/Fontawesome.min.css')}}" rel="stylesheet">
 
 	</head>
-<header id="header" class="d-flex align-items-center">
-        <div class="container d-flex align-items-center justify-content-between">
+	<header id="header" class="d-flex align-items-center">
+		<div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo">
-                <a href="{{ path('app_home') }}">GSV</a>
-            </h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+			<h1 class="logo">
+				<a href="{{ path('app_home') }}">GSV</a>
+			</h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			<!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li>
-                        <a class="nav-link scrollto active" href="{{ path('app_home') }}">Accueil</a>
-                    </li>
-                    <li>
-                            
-                        <a  href="{{ path('app_register') }}">Inscription</a>
-                    </li>
-                    <li>
-                        <a  href="{{ path('app_login') }}">Connexion</a>
-                    </li> 
-                     <li>
-                        <a  href="{{ path('app_annonce') }}">Nos annonces</a>
-                    </li> 
-                    <li>
-                        <a  href="{{ path('admin_index') }}">Admin</a>
-                    </li> 
-                    
-                    
-                            
-                            
-                            <li class="dropdown">
-							<li class="dropdown"><a href="#"><span>Marques</span> <i class="bi bi-chevron-right"></i></a>
-                               
-                                   
-                                <ul>
-                                    <li><a href="#">Citroen</a></li>
-                                    <li><a href="#">BMW</a></li>
-                                    <li><a href="#">Mercedes</a></li>
-                                    <li><a href="#">Peugeot</a></li>
-                                    <li><a href="#">Dacia</a></li>
-                                    <li><a href="#">Audi</a></li>
-                                    <li><a href="#">Hyundai</a></li>
-                                    <li><a href="#">Ford</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#">
-                                    <span>Catégories</span>
-                                    <i class="bi bi-chevron-right"></i>
-                                </a>
-                                <ul>
-                                    <li><a href="#">Citadine</a></li>
-                                    <li><a href="#">Berline</a></li>
-                                    <li><a href="#">4x4</a></li>
-                                    <li><a href="#">Bus</a></li>
-                                    <li><a href="#">car</a></li>
-                                </ul>
-                            </li>
-							</ul>
-							 <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav>
-            <!-- .navbar -->
+			<nav id="navbar" class="navbar">
+				<ul>
+					<li>
+						<a class="nav-link scrollto active" href="{{ path('app_home') }}">Accueil</a>
+					</li>
+					<li>
 
-        </div>
-    </header>
+						<a href="{{ path('app_register') }}">Inscription</a>
+					</li>
+					<li>
+						<a href="{{ path('app_login') }}">Connexion</a>
+					</li>
+					<li>
+						<a href="{{ path('app_annonce') }}">Nos annonces</a>
+					</li>
+					<li>
+						<a href="{{ path('admin_index') }}">Admin</a>
+					</li>
+
+					<li>
+						<a href="{{ path('profil_user') }}">Mon profil</a>
+					</li>
 
 
-	
-	
+				</ul>
+				<i class="bi bi-list mobile-nav-toggle"></i>
+			</nav>
+			<!-- .navbar -->
+
+		</div>
+	</header>
+
+
 	<main>
 		{% block body %}{% endblock %}
 		<!-- Vendor JS Files -->
-  <script src="{{asset('assets/vendor/aos/aos.js')}}"></script>
-  <script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-  <script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
-  <script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+		<script src="{{asset('assets/vendor/aos/aos.js')}}"></script>
+		<script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+		<script src="{{asset('assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
+		<script src="{{asset('assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+		<script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
+		<script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
 
-  <!-- Template Main JS File -->
-  <script src="{{asset('assets/js/main.js')}}"></script>
-  
+		<!-- Template Main JS File -->
+		<script src="{{asset('assets/js/main.js')}}"></script>
+
 	</main>
 	<!-- ======= Footer ======= -->
 	<footer id="footer">
@@ -150,9 +122,12 @@
 					<span>ONFP & Simplon</span>
 				</strong>. All Rights Reserved
 			</div>
-			<div class="credits">Designed by &nbsp <a href="https://bootstrapmade.com/">gabilau2406@gmail.com</a></div>
+			<div class="credits">Designed by &nbsp
+				<a href="https://bootstrapmade.com/">gabilau2406@gmail.com</a>
+			</div>
 		</div>
-  </footer><!-- End Footer -->
-  
-  
-  </html>
+	</footer>
+	<!-- End Footer -->
+
+
+</html>

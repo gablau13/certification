@@ -36,4 +36,5 @@ security:
     access_control:
          - { path: ^/admin, roles: ROLE_ADMIN }
          - { path: ^/annonces/create, roles: ROLE_USER }
-        # - { path: ^/annonces/edit, roles: ROLE_ADMIN }
+         - { path: ^/profil, roles: ROLE_USER }
+         

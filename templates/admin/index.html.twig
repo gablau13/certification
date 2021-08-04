@@ -35,7 +35,7 @@
 			{% for annonce in annonces %}
 				<tr>
 					<td>{{annonce.titre}}</td>
-					<td>{{annonce.prix}}</td>
+					<td>{{annonce.prix | number_format(0, ',', ' ' )}}</td>
                     <td>{{annonce.adresse}}</td>
 					<td>
 						<div class="form-check">
