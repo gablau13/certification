@@ -85,6 +85,11 @@ class Annonces
      */
     private $commentaires;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="annonces")
+     */
+    private $users;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -277,6 +282,18 @@ class Annonces
                 $commentaire->setAnnonces(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUsers(): ?Users
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?Users $users): self
+    {
+        $this->users = $users;
 
         return $this;
     }

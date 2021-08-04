@@ -21,29 +21,28 @@
         </div>
     {% endif %}
 	<div class="container-fluid">
-		<h1>Liste des utilisateurs</h1>
+		<h1>Liste de mes annonces</h1>
 		<table class="table">
 			<tr>
-				<th>Prénom</th>
-				<th>Nom</th>
-                <th>Email</th>
+				<th>Titre</th>
+				<th>Prix</th>
+                <th>Disponibilité</th>
 				
 			</tr>
 		
 				<tr>
-					<td>{{user.prenom}}</td>
-					<td>{{user.nom }}</td>
-                    <td>{{user.email}}</td>
+					<td>{{annonce.titre}}</td>
+					<td>{{annonce.prix }}</td>
+                    <td>{{annonce.disponibilite}}</td>
                    <td>
-				   <a href="{{path('profil_edit', {'id': user.id})}}">Modifier Profil</a>
+				   <a href="">Modifier l'annonce</a>
 				   
 				   </td>
+				   
 				</tr>
 
 			
 		</table>
-
 	</div>
-	<a href="{{path('profil_user_annonce', {'id': annonce.id})}}">Voir mes annonces</a>
 
 {% endblock %}
