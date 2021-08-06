@@ -35,7 +35,14 @@ class AnnoncesRepository extends ServiceEntityRepository
         ;
     }
     */
-
+    public function findAnnoncesUser($value)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.users = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
     /*
     public function findOneBySomeField($value): ?Annonces
     {
