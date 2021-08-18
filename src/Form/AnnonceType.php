@@ -80,11 +80,7 @@ class AnnonceType extends AbstractType
                 'mapped'=> false,
                 'required'=> false
             ])
-            ->add('Disponibilite',CheckboxType::class, [
-                "label" => 'Disponibilité',
-                
-                
-            ])
+            ->add('disponibilite', CheckboxType::class)
            
           ;  
     }

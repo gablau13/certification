@@ -6,10 +6,11 @@ use id;
 use App\Entity\Users;
 use App\Entity\Images;
 use App\Entity\Annonces;
+use App\Form\AnnonceType;
 use App\Form\EditUserType;
 use App\Form\EditAnnonceUserType;
-use App\Repository\AnnoncesRepository;
 use App\Repository\UsersRepository;
+use App\Repository\AnnoncesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,8 +71,8 @@ class UserController extends AbstractController
     #[Route('profil/annonces/edit/{slug}', name: 'profil_annonces_edit')]
     public function editAnnonce(Request $request, Annonces $annonce): Response
     {
-        $annonce = new Annonces();
-        $form = $this->createForm(EditAnnonceUserType::class, $annonce);
+       
+        $form = $this->createForm(AnnonceType::class, $annonce);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 

@@ -2,14 +2,20 @@
 
 namespace App\Controller;
 
+use App\Entity\Marque;
 use App\Entity\Annonces;
-use App\Entity\Commentaires;
+use App\Form\MarqueType;
+use App\Entity\Categorie;
 use App\Form\AnnoncesType;
+use App\Form\CategorieType;
+use App\Entity\Commentaires;
+use App\Repository\UsersRepository;
 use App\Repository\AnnoncesRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin')]
 class AdminController extends AbstractController
@@ -21,10 +27,16 @@ class AdminController extends AbstractController
             'annonces' => $annoncesRepository->findAll(),
         ]);
     }
-    #[Route('/admin/{slug}', name: 'annonces_delete_commentaire')]
-   
-   
-
+    #[Route('/user', name: 'profils_user')]
+    public function users(UsersRepository $usersRepository): Response
+    {
+        $user = $this->getUser();
+        // dd($user);
+        $user = $usersRepository->findAll();
+        return $this->render('admin/users.html.twig', [
+            'user' => $user
+        ]);
+    }
     #[Route('/new', name: 'admin_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
@@ -45,6 +57,46 @@ class AdminController extends AbstractController
             'form' => $form,
         ]);
     }
+    #[Route('/new/categorie', name: 'app_annonce_categorie')]
+    public function createCategorie(Request $request, EntityManagerInterface $manager): Response
+    {
+        $categorie = new Categorie();
+        $form = $this->createForm(CategorieType::class, $categorie);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+
+
+            $this->manager = $manager;
+            $manager->persist($categorie);
+            $manager->flush();
+            return $this->redirectToRoute('admin_index');
+        }
+        return $this->render('admin/index.html.twig', [
+            'categorie' => $categorie,
+            'form' => $form->createView()
+        ]);
+    }
+    #[Route('/new/marque', name: 'app_annonce_marque')]
+    public function createMarque(Request $request, EntityManagerInterface $manager): Response
+    {
+        $marque = new Marque();
+        $formmarque = $this->createForm(MarqueType::class, $marque);
+        $formmarque->handleRequest($request);
+        if ($formmarque->isSubmitted() && $formmarque->isValid()) {
+
+
+
+            $this->manager = $manager;
+            $manager->persist($marque);
+            $manager->flush();
+            return $this->redirectToRoute('admin_index');
+        }
+        return $this->render('admin/index.html.twig', [
+            'marque' => $marque,
+            'form' => $formmarque->createView()
+        ]);
+    }
 
     #[Route('/{id}', name: 'admin_show', methods: ['GET'])]
     public function show(Annonces $annonce): Response
@@ -54,23 +106,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'admin_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Annonces $annonce): Response
-    {
-        $form = $this->createForm(AnnoncesType::class, $annonce);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('admin_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('admin/edit.html.twig', [
-            'annonce' => $annonce,
-            'form' => $form,
-        ]);
-    }
+    
 
     #[Route('/{id}', name: 'admin_delete', methods: ['POST'])]
     public function delete(Request $request, Annonces $annonce): Response
@@ -85,4 +121,5 @@ class AdminController extends AbstractController
     }
 
     
+  
 }

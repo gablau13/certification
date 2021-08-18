@@ -55,9 +55,9 @@
 								Publié par
 								{{commentaire.auteur}}
 
-								{{annonce.createdAt |ago(locale='fr')}}</small>
+								{{commentaire.createdAt |ago(locale='fr')}}</small>
 						</p>
-                <a href="{{ path('annonces_delete_commentaire', {'slug':annonce.slug}) }}">Supprimer</a>
+                
 					</div>
 				{% endfor %}
 				

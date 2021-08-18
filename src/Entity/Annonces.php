@@ -175,12 +175,12 @@ class Annonces
         return $this;
     }
 
-    public function getDisponibilite(): ?string
+    public function getDisponibilite(): ?bool
     {
         return $this->disponibilite;
     }
 
-    public function setDisponibilite(string $disponibilite): self
+    public function setDisponibilite(bool $disponibilite): self
     {
         $this->disponibilite = $disponibilite;
 

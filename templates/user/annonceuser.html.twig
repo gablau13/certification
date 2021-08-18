@@ -27,7 +27,7 @@
 				<th>Titre</th>
 				<th>Prix</th>
                 <th>Disponibilité</th>
-				
+				<th>Action</th>
 			</tr>
 		
 			
@@ -41,8 +41,12 @@
 					<td>{{annonce.prix }}</td>
                     <td>{{annonce.disponibilite}}</td>
                    <td>
-				   <a href="{{path('profil_annonces_edit', {'slug':annonce.slug})}}">Modifier l'annonce</a>
-				   
+				   <a href="{{path('profil_annonces_edit', {'slug':annonce.slug})}}">
+				   <i class="bi bi-pencil"></i>
+				   </a>
+				   <a href="{{path('annonces_show', {'slug':annonce.slug})}}">
+				   <i class="bi bi-eye"></i>
+				   </a>
 				   </td>
 				   
 				</tr>

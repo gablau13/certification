@@ -48,22 +48,22 @@
 					</td>
                     
 					<td>
-						<a href="{{(path('admin_edit', {id:annonce.id}))}}">
-							<i class="fas fa-edit"></i>
-						</a>
 						
+						<a href="{{ path('admin_show', {id: annonce.id}) }}">
+					<i class="bi bi-eye"></i>
+					</a>
 						<a href="{{(path('admin_delete', {id:annonce.id}))}}" onclick="return confirm('Etes vous sur de bien vouloir supprimer cette annonce?')">
-							<i class="fas fa-trash"></i>
+							<i class="bi bi-trash"></i>
 						</a>
                         <td>
-                    <a href="{{ path('admin_show', {'id': annonce.id}) }}">show</a>
                    
-                </td>
-
-					</td>
+               
 				</tr>
 			{% endfor %}
+
 		</table>
-	</div>
-   
+		<a class= "btn btn-primary" href="{{ path('app_annonce_categorie')}}">Ajoutez Catégorie</a>
+		<a class="btn btn-primary" href="{{ path('app_annonce_marque')}}">Ajoutez une Marque</a>
+	</div><br>
+    <a href="">Acceder à la liste des utilisateurs</a>
 {% endblock %}
