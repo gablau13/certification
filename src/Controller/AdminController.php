@@ -9,6 +9,7 @@ use App\Entity\Categorie;
 use App\Form\AnnoncesType;
 use App\Form\CategorieType;
 use App\Entity\Commentaires;
+use App\Entity\Users;
 use App\Repository\UsersRepository;
 use App\Repository\AnnoncesRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,7 +32,7 @@ class AdminController extends AbstractController
     public function users(UsersRepository $usersRepository): Response
     {
         $user = $this->getUser();
-        // dd($user);
+        
         $user = $usersRepository->findAll();
         return $this->render('admin/users.html.twig', [
             'user' => $user
