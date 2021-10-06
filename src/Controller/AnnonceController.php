@@ -246,13 +246,5 @@ class AnnonceController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-    #[Route('/annonces/delete/{slug}', name: 'annonces_delete')]
-    public function delete(Annonces $annonce): Response
-    {
-
-        $this->manager->remove($annonce);
-        $this->manager->flush();
-        $this->addFlash('success', 'Annonce supprimer avec succès!');
-        return $this->redirectToRoute('app_annonce');
-    }
+   
 }

@@ -9,9 +9,9 @@
 						<div class="card" style="border-radius: 15px;">
 							<div class="card-body p-5">
 								<div class="text-center">
-									<h3>Veuillez ajouter le type de voiture</h3>
+									<h3>Veuillez ajouter un type de voiture</h3>
 								</div>
-								{{ form_start(form) }}
+								{{ form_start(formmarque) }}
 								<div class="container w-50 h-50 bg-light text-black mt-25">
 									<div class="form-group">
 										{{ form_widget(form) }}
@@ -19,7 +19,7 @@
 									</div><br>
 									<button type="submit" class="btn btn-primary">Publiez</button>
 								</div>
-								{{ form_end(form) }}
+								{{ form_end(formmarque) }}
 							</div>
 						</div>
 					</div>
@@ -29,4 +29,3 @@
 	</section>
 
 {% endblock %}
-

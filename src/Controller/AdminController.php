@@ -2,14 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Users;
+use App\Entity\Images;
 use App\Entity\Marque;
 use App\Entity\Annonces;
 use App\Form\MarqueType;
 use App\Entity\Categorie;
+use App\Form\AnnonceType;
 use App\Form\AnnoncesType;
 use App\Form\CategorieType;
 use App\Entity\Commentaires;
-use App\Entity\Users;
 use App\Repository\UsersRepository;
 use App\Repository\AnnoncesRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,7 +34,7 @@ class AdminController extends AbstractController
     public function users(UsersRepository $usersRepository): Response
     {
         $user = $this->getUser();
-        
+
         $user = $usersRepository->findAll();
         return $this->render('admin/users.html.twig', [
             'user' => $user
@@ -99,6 +101,7 @@ class AdminController extends AbstractController
         ]);
     }
 
+    
     #[Route('/{id}', name: 'admin_show', methods: ['GET'])]
     public function show(Annonces $annonce): Response
     {
@@ -106,21 +109,8 @@ class AdminController extends AbstractController
             'annonce' => $annonce,
         ]);
     }
-
     
-
-    #[Route('/{id}', name: 'admin_delete', methods: ['POST'])]
-    public function delete(Request $request, Annonces $annonce): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$annonce->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($annonce);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('admin_index', [], Response::HTTP_SEE_OTHER);
-    }
-
-    
-  
+               
+   
+   
 }

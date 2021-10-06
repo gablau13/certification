@@ -31,12 +31,13 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
             ->add('email', TextType::class,[
-                "label" => 'Entrez une adresse Email valide',
+                "label" => 'Email',
                 'attr' => [
                     'placeholder' => "Saisissez une adresse Email valide", 'class' => 'form-control'
                 ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
+                "label" => 'J\'accepte les conditions d\'utilisation',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([

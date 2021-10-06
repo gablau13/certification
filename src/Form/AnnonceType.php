@@ -70,7 +70,7 @@ class AnnonceType extends AbstractType
             ->add('prix',IntegerType::class, [
                 "label" => 'Prix',
                 'attr' => [
-                    'placeholder' => "Adresse", 'class' => 'form-control'
+                    'placeholder' => "000.000.000", 'class' => 'form-control'
                 ]
             ])
             

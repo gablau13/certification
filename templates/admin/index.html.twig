@@ -50,20 +50,18 @@
 					<td>
 						
 						<a href="{{ path('admin_show', {id: annonce.id}) }}">
-					<i class="bi bi-eye"></i>
-					</a>
-						<a href="{{(path('admin_delete', {id:annonce.id}))}}" onclick="return confirm('Etes vous sur de bien vouloir supprimer cette annonce?')">
-							<i class="bi bi-trash"></i>
-						</a>
-                        <td>
+					    <i class="bi bi-eye"></i>
+					    </a>
+						
+						
+                    </td>
                    
                
 				</tr>
 			{% endfor %}
 
 		</table>
-		<a class= "btn btn-primary" href="{{ path('app_annonce_categorie')}}">Ajoutez Catégorie</a>
-		<a class="btn btn-primary" href="{{ path('app_annonce_marque')}}">Ajoutez une Marque</a>
+		
 	</div><br>
     <a href="{{path('profils_user')}}">Acceder à la liste des utilisateurs</a>
 {% endblock %}
