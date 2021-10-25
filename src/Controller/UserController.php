@@ -119,4 +119,19 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    #[Route('/{id}', name: 'delete_user')]
+    public function deleteUser(Request $request, Users $users ): Response
+  {
+      if ($this->isCsrfTokenValid('delete'.$users->getId(), $request->request->get('_token'))){
+          $entityManager=$this->getDoctrine()->getManager();
+          $entityManager->remove($users);
+          $entityManager->flush();
+          
+          $this->addFlash('sup', 'Compte utilisateur Supprimé avec succès');
+
+      }
+      return $this->redirectToRoute('profil_user_annonce');
+
+  }
 }

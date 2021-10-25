@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Users;
 use App\Entity\Images;
 use App\Entity\Marque;
@@ -20,9 +21,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 #[Route('/admin')]
 class AdminController extends AbstractController
 {
+
+    public function __construct(EntityManagerInterface $manager)
+    {
+        $this->manager = $manager;
+    }
+
     #[Route('/', name: 'admin_index', methods: ['GET'])]
     public function index(AnnoncesRepository $annoncesRepository): Response
     {
@@ -111,6 +119,28 @@ class AdminController extends AbstractController
     }
     
                
-   
+    #[Route('admin/annonce/delete/{id}', name: 'admin_annonce_delete')]
+    public function delete(Annonces $annonce ): Response
+    {
+
+        $this->manager->remove($annonce);
+        $this->manager->flush();
+        $this->addFlash('success', 'Annonce supprimer avec succès!');
+        return $this->redirectToRoute('admin_index');
+
+    
+    }
+
+    #[Route('admin/user/delete/{id}', name: 'admin_user_delete')]
+    public function deleteUser(Users $users ): Response
+    {
+
+        $this->manager->remove($users);
+        $this->manager->flush();
+        $this->addFlash('success', 'Utilisateur supprimer avec succès!');
+        return $this->redirectToRoute('profil_user');
+
+    
+    }
    
 }

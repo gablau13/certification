@@ -45,7 +45,9 @@
 					<a href="{{path('profil_edit', {'id': user.id})}}">
 					<i class="bi bi-pencil"></i>
 					</a>
-				
+				    <a href="{{ path('delete_user', {id:user.id}) }}">
+					<i class="bi bi-trash"></i>
+					</a>
 					
 				</td>
 			</tr>
